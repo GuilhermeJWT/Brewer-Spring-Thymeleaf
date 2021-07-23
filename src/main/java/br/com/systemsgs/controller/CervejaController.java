@@ -14,14 +14,9 @@ import br.com.systemsgs.model.ModelCerveja;
 @Controller
 public class CervejaController {
 	
-	@RequestMapping(value = "/cervejas/cadastro")
-	public String cadastro() {
-		return "cerveja/cadastro-produto";
-	}
-	
 	@RequestMapping(value = "/cervejas/novo")
 	public String novo(ModelCerveja modelCerveja) {
-		return "cerveja/testando";
+		return "cerveja/CadastroCerveja";
 	}
 	
 	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
@@ -31,7 +26,7 @@ public class CervejaController {
 			return novo(modelCerveja);
 		}
 		
-		return "redirect:/cerveja/testando";
+		return "redirect:/cerveja/CadastroCerveja";
 	}
 
 }
