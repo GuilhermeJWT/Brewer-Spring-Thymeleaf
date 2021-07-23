@@ -1,14 +1,18 @@
 package br.com.systemsgs.model;
 
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 public class ModelCerveja {
 	
-	@NotBlank(message = "SKU Obrigatório")
+	@NotBlank(message = "Sku deve ser Informado!!!")
 	private String sku;
 	
+	@NotBlank(message = "Nome deve ser Informado!!!")
 	private String nome;
 	
+	@Size(min = 1, max = 50, message = "A Descrição deve estar entre 1 e 50 Caracteres!!!")
 	private String descricao;
 	
 	public String getSku() {
