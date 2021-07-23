@@ -22,6 +22,7 @@
 		<servlet.version>3.1.0</servlet.version>
 		
 		<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
+		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
 	</properties>
 	
 	<dependencies>
@@ -29,6 +30,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
@@ -39,15 +41,24 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf</artifactId>
 			<version>${thymeleaf.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf-spring4</artifactId>
 			<version>${thymeleaf.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		
 	</dependencies>
