@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.systemsgs.model.ModelCerveja;
 
 @Controller
-public class CervejaController {
+public class CervejasController {
 	
 	@RequestMapping(value = "/cervejas/novo")
 	public String novo(ModelCerveja modelCerveja) {
