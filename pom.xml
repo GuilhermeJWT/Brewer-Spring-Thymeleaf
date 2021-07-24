@@ -27,6 +27,8 @@
 		<thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
 		<log4f.version>2.6</log4f.version>
 		<jcl-over-slf4j>1.7.21</jcl-over-slf4j>
+		
+		<hibernate.version>5.1.0.Final</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -99,6 +101,20 @@
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>${thymeleaf-layout-dialect.version}</version>
+		</dependency>
+		
+		<dependency>
+		 <groupId>org.hibernate</groupId>
+		 <artifactId>hibernate-entitymanager</artifactId>
+		 <version>${hibernate.version}</version>
+		 <scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
+			<version>${hibernate.version}</version>
+			<scope></scope>
 		</dependency>
 
 	</dependencies>
