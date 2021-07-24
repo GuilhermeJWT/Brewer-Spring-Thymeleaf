@@ -25,6 +25,8 @@
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
 
 		<thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
+		<log4f.version>2.6</log4f.version>
+		<jcl-over-slf4j>1.7.21</jcl-over-slf4j>
 	</properties>
 
 	<dependencies>
@@ -39,6 +41,30 @@
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4f.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4f.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4f.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcl-over-slf4j}</version>
 		</dependency>
 		
 		<dependency>
