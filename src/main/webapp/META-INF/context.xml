@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context reloadable="true">
+	<Resource
+	name="jdbc/brewerDB"
+	auth="Container"
+	type="javax.sql.DataSource"
+	defaultAutoCommit="false"
+	maxActive="50"
+	maxIdle="10"
+	maxWait="10"
+	initialSize="10"
+	driverClassName="org.postgresql.Driver"
+	validationQuery="SELECT 'OK'"
+	testWhileIdle="true"
+	testOnBorrow="true"
+	numTestsPerEvictionRun="5"
+	timeBetweenEvictionRunsMillis="5000"
+	minEvictableIdleTimeMillis="60000"
+	antiJARLocking="false"
+	antiResourceLocking="false"
+	username="postgres"
+	password="admin"
+	 url="jdbc:postgresql://localhost:5432/brewer?autoReconnect=true"	
+	/>
+</Context>
+
+
+<!-- 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/brewerDB" auth="Container" 
+            factory="org.apache.naming.factory.BeanFactory"
+            type="com.mchange.v2.c3p0.ComboPooledDataSource"
+            driverClass="com.mysql.jdbc.Driver"
+            jdbcUrl="jdbc:mysql://localhost/brewer?useSSL=false"
+            user="root"
+            password="root" 
+            initialPoolSize="5" 
+            minPoolSize="5"
+            maxPoolSize="5" 
+     />
+</Context>
+ -->
