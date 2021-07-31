@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -38,25 +42,35 @@ public class ModelCerveja implements Serializable {
 	@NotBlank(message = "Nome deve ser Informado!!!")
 	private String nome;
 
+	@NotBlank(message = "A Descrição deve ser Informada!!!")
 	@Size(min = 1, max = 50, message = "A Descrição deve estar entre 1 e 50 Caracteres!!!")
 	private String descricao;
 
+	@DecimalMin(value = "0.50", message = "O valor da cerveja deve ser maior que R$0,50")
+	@DecimalMax(value = "9999999.99", message = "O valor da cerveja deve ser menor que R$9.999.999,99")
 	private BigDecimal valor;
 
+	@NotNull(message = "Teor Alcoólico deve ser Informado!!!")
+	@DecimalMax(value = "100.0", message = "O Valor do teor alcóolico deve ser menor que 100")
 	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcoolico;
 
+	@DecimalMax(value = "100.0", message = "A comissão deve ser igual ou menor que 100")
 	private BigDecimal comissao;
 
+	@Max(value = 9999, message = "A quantidade em estoque deve ser menor que 9.999")
 	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
 
+	@NotNull(message = "A Origem deve ser Informada!!!")
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
 
+	@NotNull(message = "O Sabor deve ser Informado!!!")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 
+	@NotNull(message = "O Estilo deve ser Informado!!!")
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private ModelEstilo estilo;
