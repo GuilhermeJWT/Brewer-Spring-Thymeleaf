@@ -66,6 +66,10 @@ public class ModelCerveja implements Serializable {
 	@Max(value = 9999, message = "A quantidade em estoque deve ser menor que 9.999")
 	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
+	
+	private String foto;
+	
+	private String contentType;
 
 	@NotNull(message = "A Origem deve ser Informada!!!")
 	@Enumerated(EnumType.STRING)
@@ -172,6 +176,22 @@ public class ModelCerveja implements Serializable {
 
 	public void setEstilo(ModelEstilo estilo) {
 		this.estilo = estilo;
+	}
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	@Override
