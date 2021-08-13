@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.systemsgs.config.FotoStorogeRunnable;
+
 @RestController
 @RequestMapping(value = "/fotos")
 public class FotosController {
@@ -16,7 +18,9 @@ public class FotosController {
 		DeferredResult<String> resultado = new DeferredResult<String>();
 		resultado.setResult("Foto Recebida!");
 		
-		System.out.println(files[0].getSize());
+		Thread thread = new Thread(new FotoStorogeRunnable(files, resultado));
+		thread.start();
+		
 		return resultado;
 	}
 
