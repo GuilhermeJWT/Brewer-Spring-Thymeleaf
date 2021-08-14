@@ -124,10 +124,22 @@
 					  <input type="hidden" th:field="*{contentType}">
 						<label class="control-label">Foto</label>
 						
-						<div id="upload-drop" class="bw-upload">
+						<div id="upload-drop" class="bw-upload  hidden">
 						 <i class="glyphicon glyphicon-cloud-upload"></i>
 						 <span>Arraste a Foto aqui</span>
 						 <a class="bw-upload-form-file">Selecione<input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+						</div>
+						
+						<!-- DIV Para exibir a imagem na tela -->
+						<div class="row">
+							<div class="col-md-4"></div>
+							<div class="col-md-4 text-center">
+							  <a href="#" class="thumbnail">
+							  	<img th:src="@{/fotos/temp/503c3e43-2ec2-44b9-a4da-e3eae96d7689_brahma.jpg}"></img>
+							  </a>
+							  <button type="button" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
+							</div>
+							<div class="col-md-4"></div>
 						</div>
 						
 					</div>
