@@ -124,26 +124,15 @@
 					  <input type="hidden" th:field="*{contentType}">
 						<label class="control-label">Foto</label>
 						
-						<div id="upload-drop" class="bw-upload  hidden">
+					<div class="js-container-foto-cerveja">
+						<div id="upload-drop" class="bw-upload">
 						 <i class="glyphicon glyphicon-cloud-upload"></i>
 						 <span>Arraste a Foto aqui</span>
 						 <a class="bw-upload-form-file">Selecione<input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
 						</div>
-						
-						<!-- DIV Para exibir a imagem na tela -->
-						<div class="row">
-							<div class="col-md-4"></div>
-							<div class="col-md-4 text-center">
-							  <a href="#" class="thumbnail">
-							  	<img th:src="@{/fotos/temp/503c3e43-2ec2-44b9-a4da-e3eae96d7689_brahma.jpg}"></img>
-							  </a>
-							  <button type="button" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
-							</div>
-							<div class="col-md-4"></div>
-						</div>
+					</div>						
 						
 					</div>
-					
 				</div>
 				
 				<div class="form-group">
@@ -153,12 +142,14 @@
 			</form> 
 		</div>
 		<div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
+		<th:block th:replace="hbs/FotoCerveja"></th:block>
 	</section>
 
 	<th:block layout:fragment="javascript-extra">
 		<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
 		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
 		<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+		<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
 		
 		<script>
 			$(function(){
@@ -168,8 +159,29 @@
 						allow: '*.(jpg|jpeg|png)',
 						action: '/brewer/fotos',
 						complete: function(resposta){
-							$('input[name=foto]').val(resposta.nome);
-							$('input[name=contentType]').val(resposta.contentType);
+							var inputNomeFoto = $('input[name=foto]');
+							var inputContentType = $('input[name=contentType]');
+							
+							var htmlFotoCervejaTemplate = $('#foto-cerveja').html();
+							var template = Handlebars.compile(htmlFotoCervejaTemplate);
+							var htmlFotoCerveja = template({nomeFoto: resposta.nome});
+							
+							var containerFotoCerveja = $('.js-container-foto-cerveja');
+							
+							var uploadDrop = $('#upload-drop');
+							
+							inputNomeFoto.val(resposta.nome);
+							inputContentType.val(resposta.contentType);
+							
+							uploadDrop.addClass('hidden');
+							containerFotoCerveja.append(htmlFotoCerveja);
+							
+							$('.js-remove-foto').on('click', function() {
+								$('.js-foto-cerveja').remove();
+								uploadDrop.removeClass('hidden');
+								inputNomeFoto.val('');
+								inputContentType.val('');
+							});
 						}
 				};
 				UIkit.uploadSelect($('#upload-select'), settings);
