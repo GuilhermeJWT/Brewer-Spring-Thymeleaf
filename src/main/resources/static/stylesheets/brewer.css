@@ -32,6 +32,10 @@
     margin-bottom: 1px;
 }
 
+.bw-required > .control-label:after{
+	content: "*"
+}
+
 .bw-upload-form-file > input[type=file] {
 	position: absolute;
     top: 0;

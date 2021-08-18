@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,7 @@ import br.com.systemsgs.repository.EstilosRepository;
 import br.com.systemsgs.service.CervejaService;
 
 @Controller
+@RequestMapping(value = "/cervejas")
 public class CervejasController {
 	
 	@Autowired
@@ -25,7 +27,7 @@ public class CervejasController {
 	@Autowired
 	private EstilosRepository estilosRepository;
 
-	@RequestMapping(value = "/cervejas/novo")
+	@RequestMapping(value = "/novo")
 	public ModelAndView novo(ModelCerveja modelCerveja) {
 		ModelAndView mv = new ModelAndView("cerveja/CadastroCerveja");
 		mv.addObject("sabores", Sabor.values());
@@ -35,7 +37,7 @@ public class CervejasController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid ModelCerveja modelCerveja, BindingResult result, RedirectAttributes attributes) {
 		
 		if(result.hasErrors()) {
@@ -46,6 +48,12 @@ public class CervejasController {
 		attributes.addFlashAttribute("mensagem", "Cerveja Salva com Sucesso!");
 
 		return new ModelAndView("redirect:/cervejas/novo");
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar() {
+		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
+		return mv;
 	}
 
 }
