@@ -23,6 +23,15 @@ public class SalvaFotoLocal implements FotoStorage{
 	}
 	
 	@Override
+	public void salvar(String foto) {
+		try {
+			Files.move(this.localTemporario.resolve(foto), this.local.resolve(foto));
+		} catch (IOException e) {
+			throw new RuntimeException("Erro movendo a foto para o destino final", e);
+		}
+	}
+	
+	@Override
 	public String salvarTemporariamente(MultipartFile[] files) {
 		String novoNome = null;
 		if(files != null && files.length>0) {
@@ -67,4 +76,5 @@ public class SalvaFotoLocal implements FotoStorage{
 		
 		return novoNome;
 	}
+
 }
