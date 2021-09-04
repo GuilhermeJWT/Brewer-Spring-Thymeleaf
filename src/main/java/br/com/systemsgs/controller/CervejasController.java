@@ -26,7 +26,7 @@ public class CervejasController {
 	
 	@Autowired
 	private EstilosRepository estilosRepository;
-
+	
 	@RequestMapping(value = "/novo")
 	public ModelAndView novo(ModelCerveja modelCerveja) {
 		ModelAndView mv = new ModelAndView("cerveja/CadastroCerveja");
@@ -53,6 +53,10 @@ public class CervejasController {
 	@GetMapping
 	public ModelAndView pesquisar() {
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
+		mv.addObject("estilos", estilosRepository.findAll());
+		mv.addObject("sabores", Sabor.values());
+		mv.addObject("origens", Origem.values());
+		mv.addObject("cervejas", cervejaService.listaCervejas());
 		return mv;
 	}
 
