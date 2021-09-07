@@ -23,6 +23,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import br.com.systemsgs.enums.Origem;
 import br.com.systemsgs.enums.Sabor;
@@ -180,6 +181,10 @@ public class ModelCerveja implements Serializable {
 	
 	public String getFoto() {
 		return foto;
+	}
+	
+	public String getFotoOuMock() {
+		return !StringUtils.isEmpty(foto) ? foto : "cerveja-mock.png";
 	}
 
 	public void setFoto(String foto) {
