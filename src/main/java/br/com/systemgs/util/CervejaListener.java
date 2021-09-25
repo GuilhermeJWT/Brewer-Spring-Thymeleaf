@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CervejaListener {
-	
+
 	@Autowired
 	private FotoStorage fotoStorage;
 	

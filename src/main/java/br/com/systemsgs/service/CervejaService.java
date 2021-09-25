@@ -33,4 +33,10 @@ public class CervejaService {
 		return cervejasRepository.findAll();
 	}
 
+	/*
+	public Object filtrar(CervejaFilter cervejaFilter) {
+		return cervejasRepository.filtrar(cervejaFilter);
+	}
+	*/
+
 }
