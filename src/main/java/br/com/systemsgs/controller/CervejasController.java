@@ -3,6 +3,7 @@ package br.com.systemsgs.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -58,14 +59,14 @@ public class CervejasController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult bindingResult, @PageableDefault(size = 5) Pageable pageable) {
+	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult bindingResult, @PageableDefault(size = 2) Pageable pageable) {
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
 		mv.addObject("estilos", estilosRepository.findAll());
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("origens", Origem.values());
 		
-		//mv.addObject("cervejas", cervejaService.listaCervejas());
-		mv.addObject("cervejas", cervejaRepository.filtrar(cervejaFilter, pageable));
+		Page<ModelCerveja> pagina = cervejaRepository.filtrar(cervejaFilter, pageable);
+		mv.addObject("pagina", pagina);
 		return mv;
 	}
 
