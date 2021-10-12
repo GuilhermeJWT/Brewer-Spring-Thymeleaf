@@ -1,5 +1,6 @@
 package br.com.systemsgs.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.systemgs.util.CervejaFilter;
+import br.com.systemsgs.controller.page.PageWrapper;
 import br.com.systemsgs.enums.Origem;
 import br.com.systemsgs.enums.Sabor;
 import br.com.systemsgs.model.ModelCerveja;
@@ -59,14 +61,14 @@ public class CervejasController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult bindingResult, @PageableDefault(size = 2) Pageable pageable) {
+	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult bindingResult, @PageableDefault(size = 2) Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
 		mv.addObject("estilos", estilosRepository.findAll());
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("origens", Origem.values());
 		
-		Page<ModelCerveja> pagina = cervejaRepository.filtrar(cervejaFilter, pageable);
-		mv.addObject("pagina", pagina);
+		PageWrapper<ModelCerveja> paginaWrapper = new PageWrapper<>(cervejaRepository.filtrar(cervejaFilter, pageable), httpServletRequest);
+		mv.addObject("pagina", paginaWrapper);
 		return mv;
 	}
 
