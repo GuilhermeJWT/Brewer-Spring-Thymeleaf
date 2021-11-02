@@ -19,26 +19,26 @@ import br.com.systemgs.util.CervejaFilter;
 import br.com.systemsgs.model.ModelCerveja;
 import br.com.systemsgs.repository.PaginacaoUtil;
 
-public class CervejasRepositoryImpl implements CervejasQuerie{
-	
+public class CervejasRepositoryImpl implements CervejasQuerie {
+
 	@PersistenceContext
 	private EntityManager manager;
-	
+
 	@Autowired
 	private PaginacaoUtil paginacaoUtil;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
 	public Page<ModelCerveja> filtrar(CervejaFilter filtro, Pageable pageable) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(ModelCerveja.class);
-		
+
 		paginacaoUtil.preparar(criteria, pageable);
 		adicionarFiltro(filtro, criteria);
-		
+
 		return new PageImpl<>(criteria.list(), pageable, total(filtro));
 	}
-	
+
 	private Long total(CervejaFilter filtro) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(ModelCerveja.class);
 		adicionarFiltro(filtro, criteria);
@@ -51,7 +51,7 @@ public class CervejasRepositoryImpl implements CervejasQuerie{
 			if (!StringUtils.isEmpty(filtro.getSku())) {
 				criteria.add(Restrictions.eq("sku", filtro.getSku()));
 			}
-			
+
 			if (!StringUtils.isEmpty(filtro.getNome())) {
 				criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 			}
@@ -77,7 +77,7 @@ public class CervejasRepositoryImpl implements CervejasQuerie{
 			}
 		}
 	}
-	
+
 	private boolean isEstiloPresente(CervejaFilter filtro) {
 		return filtro.getEstilo() != null && filtro.getEstilo().getCodigo() != null;
 	}

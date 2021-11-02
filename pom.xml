@@ -177,6 +177,7 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<!--  
 	<repositories>
 		<repository>
 			<id>sonatype-nexus-snapshots</id>
@@ -187,6 +188,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	-->
 
 	<build>
 		<plugins>
