@@ -10,5 +10,5 @@ public class CidadesController {
 	public String nova() {
 		return "cidade/CadastroCidade";
 	}
-
+	
 }

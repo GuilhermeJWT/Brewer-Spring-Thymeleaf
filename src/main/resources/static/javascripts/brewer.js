@@ -54,10 +54,15 @@ Brewer.MaskCep = (function() {
 	function MaskCep() {
 		this.inputCep = $('.js-cep');
 	}
+    class MaskCep {
+        constructor() {
+            this.inputCep = $('.js-cep');
+        }
+        enable() {
+            this.inputCep.mask('00.000-000');
+        }
+    }
 	
-	MaskCep.prototype.enable = function() {
-		this.inputCep.mask('00.000-000');
-	}
 	
 	return MaskCep;
 	
