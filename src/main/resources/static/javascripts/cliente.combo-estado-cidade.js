@@ -32,9 +32,12 @@ Brewer.ComboCidade = (function(){
 	}
 	
 	function onEstadoAlterado(evento, codigoEstado){
-		//var resposta =$.ajax({
-			
-		//});
+		var resposta =$.ajax({
+			url: this.combo.data('url'),
+			method: 'GET',
+			contentType: 'application/json',
+			data: {'estado': codigoEstadp}
+		});
 	}
 	
 	return ComboCidade;
