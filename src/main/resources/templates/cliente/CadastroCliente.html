@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:data="http://www.thymeleaf.org/extras/data"
+      xmlns:brewer=""
       layout:decorate="~{layoutPaginas/LayoutPadrao}">
 
 <head>
@@ -20,11 +21,13 @@
 	</div>
 
 	<div class="container-fluid">
-		<form>
+		<form method="POST" th:object="${cliente}" th:action="@{/clientes/novo}">
+		<brewer:message/>
+		
 			<div class="row">
 				<div class="form-group  col-sm-12">
 					<label for="nome">Nome</label>
-					<input type="text" class="form-control" id="nome" autofocus="autofocus"/>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
 				</div>
 			</div>
 			
@@ -36,7 +39,7 @@
 						<th:block th:each="tipoPessoa : ${tipoPessoa}">
 							<div class="radio  radio-inline">
 							<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" 
-								name="tipoPessoa" data:documento="${tipoPessoa.documento}" data:mascara="${tipoPessoa.mascara}"> 
+								th:field="*{tipoPessoa}" th:value="${tipoPessoa}" data:documento="${tipoPessoa.documento}" data:mascara="${tipoPessoa.mascara}"> 
 							<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}">Física</label>
 						  </div>
 						</th:block>
@@ -46,43 +49,43 @@
 				
 				<div class="form-group  col-sm-8" >
 					<label for="cpfOuCnpj">CPF/CNPJ</label>
-					<input type="text" class="form-control" id="cpfOuCnpj" disabled />
+					<input type="text" class="form-control" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled />
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="form-group  col-sm-4">
 					<label for="telefone">Telefone</label>
-					<input type="text" class="form-control  js-phone-number" id="telefone"/>
+					<input type="text" class="form-control  js-phone-number" th:field="*{telefone}" id="telefone"/>
 				</div>
 				
 				<div class="form-group  col-sm-8">
 					<label for="email">E-mail</label>
-					<input type="text" class="form-control" id="email"/>
+					<input type="text" class="form-control" th:field="*{email}" id="email"/>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="form-group  col-sm-4">
 					<label for="logradouro">Logradouro</label>
-					<input type="text" class="form-control" id="logradouro"/>
+					<input type="text" class="form-control" th:field="*{endereco.logradouro}" id="logradouro"/>
 				</div>
 				
 				<div class="form-group  col-sm-4">
 					<label for="numero">Número</label>
-					<input type="text" class="form-control" id="numero"/>
+					<input type="text" class="form-control" th:field="*{endereco.numero}" id="numero"/>
 				</div>
 				
 				<div class="form-group  col-sm-4">
 					<label for="complemento">Complemento</label>
-					<input type="text" class="form-control" id="complemento"/>
+					<input type="text" class="form-control" th:field="*{endereco.complemento}" id="complemento"/>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="form-group  col-sm-4">
 					<label for="cep">CEP</label>
-					<input type="text" class="form-control  js-cep" id="cep"/>
+					<input type="text" class="form-control  js-cep" th:field="*{endereco.cep}" id="cep"/>
 				</div>
 				
 				<div class="form-group  col-sm-4">
@@ -96,7 +99,7 @@
 				<div class="form-group  col-sm-4">
 					<label  for="cidade">Cidade</label>
 					<div class="bw-field-action">
-						<select id="cidade" class="form-control" data:url="@{/cidades}">
+						<select id="cidade" class="form-control" th:field="*{endereco.cidade}" data:url="@{/cidades}">
 						</select>
 						
 						<div class="bw-field-action__icon  js-img-loading" style="display: none">
