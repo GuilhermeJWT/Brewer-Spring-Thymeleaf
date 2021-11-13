@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:data="http://www.thymeleaf.org/extras/data"
-      layout:decorate="layoutPaginas/LayoutPadrao">
+      layout:decorate="~{layoutPaginas/LayoutPadrao}">
 
 <head>
 	<title>Cadastro de Clientes</title>
@@ -95,9 +95,14 @@
 				
 				<div class="form-group  col-sm-4">
 					<label  for="cidade">Cidade</label>
-					<select id="cidade" class="form-control" data:url="@{/cidades}">
-						<option value="">Selecione a cidade</option>
-					</select>
+					<div class="bw-field-action">
+						<select id="cidade" class="form-control" data:url="@{/cidades}">
+						</select>
+						
+						<div class="bw-field-action__icon  js-img-loading" style="display: none">
+							<img th:src="@{/images/mini-loading.gif}"/>
+						</div>
+					</div>
 				</div>
 			</div>
 			
