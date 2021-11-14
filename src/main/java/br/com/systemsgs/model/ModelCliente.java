@@ -38,6 +38,7 @@ public class ModelCliente implements Serializable{
 	@NotBlank(message = "Nome deve ser Informado!!!")
 	private String nome;
 
+	@NotBlank(message = "CPF/CNPJ deve ser Informado!!!")
 	@CPF(groups = CpfGroup.class)
 	@CNPJ(groups = CnpjGroup.class)
 	@Column(name = "cpf_cnpj")

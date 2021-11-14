@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Embeddable
 public class ModelEndereco implements Serializable{
@@ -22,6 +23,9 @@ public class ModelEndereco implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "codigo_cidade")
 	private ModelCidade cidade;
+	
+	@Transient
+	private ModelEstado estado;
 
 	public String getLogradouro() {
 		return logradouro;
@@ -61,6 +65,14 @@ public class ModelEndereco implements Serializable{
 
 	public void setCidade(ModelCidade cidade) {
 		this.cidade = cidade;
+	}
+	
+	public ModelEstado getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(ModelEstado estado) {
+		this.estado = estado;
 	}
 	
 }
