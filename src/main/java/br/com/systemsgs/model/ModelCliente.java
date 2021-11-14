@@ -11,6 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import br.com.systemsgs.enums.TipoPessoa;
 
@@ -24,17 +28,21 @@ public class ModelCliente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
 	
+	@NotBlank(message = "Nome deve ser Informado!!!")
 	private String nome;
 
 	@Column(name = "cpf_cnpj")
 	private String cpfOuCnpj;
 	
+	@NotNull(message = "Tipo de Pessoa deve ser Informado!!!")
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_pessoa")
 	private TipoPessoa tipoPessoa;
 	
+	@NotBlank(message = "Telefone deve ser Informado!!!")
 	private String telefone;
 	
+	@Email(message = "Informe um E-Mail Válido!!!")
 	private String email;
 	
 	@Embedded

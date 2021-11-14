@@ -21,21 +21,20 @@
 	</div>
 
 	<div class="container-fluid">
-		<form method="POST" th:object="${cliente}" th:action="@{/clientes/novo}">
+		<form method="POST" th:object="${modelCliente}" th:action="@{/clientes/novo}">
 		<brewer:message/>
 		
 			<div class="row">
-				<div class="form-group  col-sm-12">
-					<label for="nome">Nome</label>
+				<div class="form-group  col-sm-12  bw-required" brewer:classforerror="nome">
+					<label for="nome" class="control-label">Nome</label>
 					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="form-group  col-sm-4">
-					<label>Tipo pessoa</label> 
+				<div class="form-group  col-sm-4  bw-required" brewer:classforerror="tipoPessoa">
+					<label class="control-label">Tipo pessoa</label> 
 					<div>
-					
 						<th:block th:each="tipoPessoa : ${tipoPessoa}">
 							<div class="radio  radio-inline">
 							<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" 
@@ -59,8 +58,8 @@
 					<input type="text" class="form-control  js-phone-number" th:field="*{telefone}" id="telefone"/>
 				</div>
 				
-				<div class="form-group  col-sm-8">
-					<label for="email">E-mail</label>
+				<div class="form-group  col-sm-8" brewer:classforerror="email">
+					<label for="email" class="control-label">E-mail</label>
 					<input type="text" class="form-control" th:field="*{email}" id="email"/>
 				</div>
 			</div>
