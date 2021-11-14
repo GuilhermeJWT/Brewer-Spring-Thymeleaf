@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.systemsgs.enums.TipoPessoa;
 import br.com.systemsgs.model.ModelCliente;
 import br.com.systemsgs.repository.EstadosRepository;
+import br.com.systemsgs.service.ClienteService;
 
 @Controller
 @RequestMapping(value = "/clientes")
@@ -21,6 +22,9 @@ public class ClientesController {
 	
 	@Autowired
 	private EstadosRepository estadosRepository;
+	
+	@Autowired
+	private ClienteService clienteService;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(ModelCliente modelCliente) {
@@ -37,6 +41,7 @@ public class ClientesController {
 			return novo(modelCliente);
 		}
 		
+		clienteService.salvarCliente(modelCliente);
 		attributes.addFlashAttribute("mensagem", "Cliente Salvo com Sucesso!!!");
 		return new ModelAndView("redirect:/clientes/novo");
 	}
