@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.systemsgs.enums.TipoPessoa;
 import br.com.systemsgs.model.ModelCliente;
@@ -31,11 +32,12 @@ public class ClientesController {
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView salvar(@Valid ModelCliente modelCliente, BindingResult result) {
+	public ModelAndView salvar(@Valid ModelCliente modelCliente, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			return novo(modelCliente);
 		}
 		
+		attributes.addFlashAttribute("mensagem", "Cliente Salvo com Sucesso!!!");
 		return new ModelAndView("redirect:/clientes/novo");
 	}
 

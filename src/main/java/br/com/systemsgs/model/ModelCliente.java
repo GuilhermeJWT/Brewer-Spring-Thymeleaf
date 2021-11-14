@@ -15,11 +15,18 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.group.GroupSequenceProvider;
 
+import br.com.systemgs.util.ClienteGroupSequenceProvider;
+import br.com.systemgs.util.CnpjGroup;
+import br.com.systemgs.util.CpfGroup;
 import br.com.systemsgs.enums.TipoPessoa;
 
 @Entity
 @Table(name = "cliente")
+@GroupSequenceProvider(ClienteGroupSequenceProvider.class)
 public class ModelCliente implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -31,6 +38,8 @@ public class ModelCliente implements Serializable{
 	@NotBlank(message = "Nome deve ser Informado!!!")
 	private String nome;
 
+	@CPF(groups = CpfGroup.class)
+	@CNPJ(groups = CnpjGroup.class)
 	@Column(name = "cpf_cnpj")
 	private String cpfOuCnpj;
 	
