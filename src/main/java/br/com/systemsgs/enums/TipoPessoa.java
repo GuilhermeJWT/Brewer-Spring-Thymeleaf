@@ -13,6 +13,10 @@ public enum TipoPessoa {
 	private String mascara;
 	private Class<?> grupo;
 	
+	public static String removerFormatacao(String cpfOuCnpj) {
+		return cpfOuCnpj.replace("\\.|-|/", "");
+	}
+	
 	TipoPessoa(String descricao, String documento, String mascara, Class<?> grupo){
 		this.descricao = descricao;
 		this.documento = descricao;

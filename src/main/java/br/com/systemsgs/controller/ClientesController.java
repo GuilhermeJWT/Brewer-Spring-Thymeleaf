@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.systemsgs.enums.TipoPessoa;
+import br.com.systemsgs.exception.CpfCnpjClienteJaCadastradoException;
 import br.com.systemsgs.model.ModelCliente;
 import br.com.systemsgs.repository.EstadosRepository;
 import br.com.systemsgs.service.ClienteService;
@@ -41,7 +42,12 @@ public class ClientesController {
 			return novo(modelCliente);
 		}
 		
-		clienteService.salvarCliente(modelCliente);
+		try {
+			clienteService.salvarCliente(modelCliente);
+		} catch (CpfCnpjClienteJaCadastradoException excption) {
+			result.rejectValue("cpfOuCnpj", excption.getMessage(), excption.getMessage());
+			return novo(modelCliente);
+		}
 		attributes.addFlashAttribute("mensagem", "Cliente Salvo com Sucesso!!!");
 		return new ModelAndView("redirect:/clientes/novo");
 	}
