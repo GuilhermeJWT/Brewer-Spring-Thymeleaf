@@ -19,7 +19,7 @@ import br.com.systemgs.util.ClienteFilter;
 import br.com.systemsgs.model.ModelCliente;
 import br.com.systemsgs.repository.PaginacaoUtil;
 
-public class ClientesImpl implements ClientesQueries{
+public class ClientesRepositoryImpl implements ClientesQuerie{
 	
 	@PersistenceContext
 	private EntityManager manager;
