@@ -73,6 +73,10 @@
     padding: 10px;
     vertical-align: middle;
 }
+.table-clientes-col-cidade-estado{
+	width: 140px;
+	text-align: right;
+}
 
 /*
 ###################
