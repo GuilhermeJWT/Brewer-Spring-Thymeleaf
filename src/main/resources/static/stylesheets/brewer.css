@@ -73,10 +73,6 @@
     padding: 10px;
     vertical-align: middle;
 }
-.table-clientes-col-cidade-estado{
-	width: 140px;
-	text-align: right;
-}
 
 /*
 ###################
@@ -142,6 +138,21 @@
 }
 
 .table-clientes-col-telefone {
+	width: 140px;
+	text-align: right;
+}
+
+.table-clientes-col-cidade-estado {
+	width: 140px;
+	text-align: right;
+}
+
+/* Colunas - Pesquisa de cidades */
+.table-cidades-col-nome {
+	
+}
+
+.table-cidades-col-estado {
 	width: 140px;
 	text-align: right;
 }
