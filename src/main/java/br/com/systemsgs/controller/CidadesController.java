@@ -11,13 +11,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.systemsgs.model.ModelCidade;
 import br.com.systemsgs.repository.CidadesRepository;
+import br.com.systemsgs.repository.EstadosRepository;
+import br.com.systemsgs.service.CidadeService;
 
 @Controller
 @RequestMapping(value = "/cidades")
 public class CidadesController {
 	
 	@Autowired
+	private CidadeService cidadeService;
+	
+	@Autowired
 	private CidadesRepository cidadesRepository;
+	
+	@Autowired
+	private EstadosRepository estadoRepository;
 	
 	@RequestMapping("/nova")
 	public String nova() {
