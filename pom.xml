@@ -37,6 +37,7 @@
 		<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
 		
 		<guava.version>19.0</guava.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		
 		<!--  
 		<log4f.version>2.6</log4f.version>
@@ -170,6 +171,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons-beanutils.version}</version>	
 			<scope>compile</scope>
 		</dependency>
 		
