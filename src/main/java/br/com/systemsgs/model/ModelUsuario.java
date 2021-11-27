@@ -39,7 +39,6 @@ public class ModelUsuario implements Serializable{
 	
 	private Boolean ativo;
 	
-	@NotNull(message = "Data de Nascimento deve ser Informada!!!")
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 	
