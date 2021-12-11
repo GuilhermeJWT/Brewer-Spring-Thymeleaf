@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.systemsgs.exception.EmailUsuarioJaCadastradoException;
 import br.com.systemsgs.model.ModelUsuario;
+import br.com.systemsgs.repository.GruposRepository;
 import br.com.systemsgs.service.UsuarioService;
 
 @Controller
@@ -21,9 +22,13 @@ public class UsuariosController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private GruposRepository grupoRepository;
+	
 	@RequestMapping("/novo")
 	public ModelAndView novo(ModelUsuario modelUsuario) {
 		ModelAndView mv = new ModelAndView("usuario/CadastroUsuario");
+		mv.addObject("grupos", grupoRepository.findAll());
 		return mv;
 	}
 	
