@@ -40,6 +40,7 @@ public class ModelUsuario implements Serializable{
 	@NotBlank(message = "E-Mail deve ser Informado!!!")
 	private String email;
 	
+	@NotBlank(message = "Senha deve ser Informada!!!")
 	private String senha;
 	
 	@Transient
@@ -54,6 +55,10 @@ public class ModelUsuario implements Serializable{
 	@ManyToMany
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	private List<ModelGrupo> grupos;
+	
+	public boolean isNovo() {
+		return codigo == null;
+	}
 
 	public Long getCodigo() {
 		return codigo;

@@ -39,6 +39,8 @@
 		<guava.version>19.0</guava.version>
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		
+		<spring-security-web.version>4.1.1.RELEASE</spring-security-web.version>
+		
 		<!--  
 		<log4f.version>2.6</log4f.version>
 		<jcl-over-slf4j>1.7.21</jcl-over-slf4j>
@@ -179,6 +181,13 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>${commons-beanutils.version}</version>	
 			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-web</artifactId>
+		  <version>${spring-security-web.version}</version>
+		  <scope>compile</scope>
 		</dependency>
 		
 		<!--  
