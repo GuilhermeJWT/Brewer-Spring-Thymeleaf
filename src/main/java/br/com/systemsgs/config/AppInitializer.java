@@ -7,7 +7,7 @@ import javax.servlet.ServletRegistration.Dynamic;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import br.com.systemgs.util.security.EnableWebSecurity;
+import br.com.systemgs.util.security.EnableWebSecurityConfig;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
 	
@@ -22,7 +22,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] {JPAConfig.class, ServiceConfig.class, EnableWebSecurity.class};
+		return new Class<?>[] {JPAConfig.class, ServiceConfig.class, EnableWebSecurityConfig.class};
 	}
 
 	@Override
