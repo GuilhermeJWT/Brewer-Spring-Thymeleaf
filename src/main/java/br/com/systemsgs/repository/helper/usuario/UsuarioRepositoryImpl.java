@@ -1,5 +1,6 @@
 package br.com.systemsgs.repository.helper.usuario;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -17,6 +18,13 @@ public class UsuarioRepositoryImpl implements UsuariosQueries{
 		return manager.
 				createQuery("from ModelUsuario where lower(email) = lower(:email) and ativo = true", ModelUsuario.class)
 				.setParameter("email", email).getResultList().stream().findFirst();
+	}
+
+	@Override
+	public List<String> permissoes(ModelUsuario modelUsuario) {
+		return manager.createQuery("select distinct p.nome from ModelUsuario u inner join u.grupos g inner join g.permissoes p where u =:modelUsuario",  String.class)
+				.setParameter("modelUsuario", modelUsuario)
+				.getResultList();
 	}
 
 }
