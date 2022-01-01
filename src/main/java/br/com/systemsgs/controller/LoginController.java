@@ -19,5 +19,10 @@ public class LoginController {
 		
 		return "Login";
 	}
+	
+	@GetMapping(value = "/403")
+	public String acessoNegado() {
+		return "403";
+	}
 
 }
