@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutPaginas/LayoutPadrao}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutPaginas/LayoutPadrao}" xmlns:brewer="">
 
 <head>
 	<title>Cadastro de Estilos</title>
@@ -16,7 +16,8 @@
 	</div>
 	
 	<div class="container-fluid">
-		<form>
+	<brewer:message/>
+		<form method="POST" th:object="${modelEstilo}" th:action="@{/estilos/novo}">
 			<div class="row">
 				<div class="form-group col-sm-12  bw-required">
 					<label for="nome" class="control-label">Nome</label>
