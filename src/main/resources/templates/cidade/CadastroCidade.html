@@ -26,7 +26,7 @@
 	</div>
 	
 	<div class="container-fluid">
-		<form method="POST" th:object="${modelCidade}" th:action="@{/cidades/nova}">
+		<form method="POST" th:object="${modelCidade}" class="form-vertical  js-form-loading" th:action="@{/cidades/novo}">
 			<brewer:message/>
 			
 			<div class="row">
