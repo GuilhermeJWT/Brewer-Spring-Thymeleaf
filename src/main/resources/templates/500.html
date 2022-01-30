@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layoutPaginas/LayoutSimples}">
+	
+	<th:block layout:fragment="conteudo">
+	<div class="aw-error-panel">
+		<h1 class="aw-error-panel__code">
+			<i class="fa  fa-location-arrow"></i>500
+		</h1>
+		
+		<h2 class="aw-error-panel__title">Erro Interno no Servidor!</h2>
+		
+		<div class="aw-error-panel__description">
+			Ops, algo de errado aconteceu no Servidor. Verifique a URL ou entre em contato com o Administrador
+			<br/><br/>
+			<a href="javascript:history.back()" class="btn  btn-primary">Voltar para onde estava</a>
+		</div>
+	</div>
+
+</th:block>
+</html>
