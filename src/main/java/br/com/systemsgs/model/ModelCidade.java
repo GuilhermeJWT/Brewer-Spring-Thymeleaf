@@ -34,6 +34,10 @@ public class ModelCidade implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_estado")
 	private ModelEstado estado;
+	
+	public boolean temEstado() {
+		return estado != null;
+	}
 
 	public Long getCodigo() {
 		return codigo;
