@@ -34,5 +34,9 @@ public class UsuarioService {
 		usuarioRepository.save(modelUsuario);
 		
 	}
+
+	public Object findAll() {
+		return usuarioRepository.findAll();
+	}
 	
 }
