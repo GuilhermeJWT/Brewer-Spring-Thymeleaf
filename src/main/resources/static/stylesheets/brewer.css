@@ -27,6 +27,10 @@
 	margin: 6px 0 0 5px;
 }
 
+.table-usuarios-col-status{
+	width: 30px;
+}
+
 /* Upload */
 .bw-upload {
 	padding: 15px;

@@ -1,17 +1,24 @@
 package br.com.systemsgs.controller;
 
+import java.util.Arrays;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.systemgs.util.UsuarioFilter;
+import br.com.systemsgs.enums.StatusUsuario;
 import br.com.systemsgs.exception.EmailUsuarioJaCadastradoException;
 import br.com.systemsgs.model.ModelUsuario;
 import br.com.systemsgs.repository.GruposRepository;
@@ -61,6 +68,12 @@ public class UsuariosController {
 		mv.addObject("usuarios", usuarioService.filtra(usuarioFilter));
 		mv.addObject("grupos", grupoService.findAll());
 		return mv;
+	}
+	
+	@PutMapping("/status")
+	@ResponseStatus(HttpStatus.OK)
+	public void atualizarStatus(@RequestParam("codigos[]") Long[] codigos, @RequestParam("status") StatusUsuario statusUsuario) {
+		usuarioService.alterarStatus(codigos, statusUsuario);
 	}
 
 }

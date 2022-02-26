@@ -1,5 +1,6 @@
 package br.com.systemsgs.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,5 +13,7 @@ import br.com.systemsgs.repository.helper.usuario.UsuariosQueries;
 public interface UsuarioRepository extends JpaRepository<ModelUsuario, Long>, UsuariosQueries{
 	
 	Optional<ModelUsuario> findByEmail(String email);
+
+	public List<ModelUsuario> findByCodigoIn(Long[] codigos);
 
 }
