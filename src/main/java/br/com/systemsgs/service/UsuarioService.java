@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.systemgs.util.UsuarioFilter;
 import br.com.systemsgs.exception.EmailUsuarioJaCadastradoException;
 import br.com.systemsgs.model.ModelUsuario;
 import br.com.systemsgs.repository.UsuarioRepository;
@@ -37,6 +38,10 @@ public class UsuarioService {
 
 	public Object findAll() {
 		return usuarioRepository.findAll();
+	}
+
+	public Object filtra(UsuarioFilter usuarioFilter) {
+		return usuarioRepository.filtrar(usuarioFilter);
 	}
 	
 }
