@@ -1,7 +1,5 @@
 package br.com.systemsgs.controller;
 
-import java.util.Arrays;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
