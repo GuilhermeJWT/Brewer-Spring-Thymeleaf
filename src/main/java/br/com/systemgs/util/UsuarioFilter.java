@@ -2,6 +2,8 @@ package br.com.systemgs.util;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import br.com.systemsgs.model.ModelGrupo;
 
 public class UsuarioFilter {

@@ -1,8 +1,11 @@
 package br.com.systemsgs.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,16 +19,21 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.systemgs.util.UsuarioFilter;
+import br.com.systemsgs.controller.page.PageWrapper;
 import br.com.systemsgs.enums.StatusUsuario;
 import br.com.systemsgs.exception.EmailUsuarioJaCadastradoException;
 import br.com.systemsgs.model.ModelUsuario;
 import br.com.systemsgs.repository.GruposRepository;
+import br.com.systemsgs.repository.UsuarioRepository;
 import br.com.systemsgs.service.GrupoService;
 import br.com.systemsgs.service.UsuarioService;
 
 @Controller
 @RequestMapping(value = "/usuarios")
 public class UsuariosController {
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
 	private UsuarioService usuarioService;
@@ -61,10 +69,12 @@ public class UsuariosController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(UsuarioFilter usuarioFilter) {
+	public ModelAndView pesquisar(UsuarioFilter usuarioFilter, @PageableDefault(size = 3) Pageable pageable, HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("/usuario/PesquisaUsuarios");
-		mv.addObject("usuarios", usuarioService.filtra(usuarioFilter));
 		mv.addObject("grupos", grupoService.findAll());
+		
+		PageWrapper<ModelUsuario> paginaWrapper = new PageWrapper<>(usuarioRepository.filtrar(usuarioFilter, pageable), httpServletRequest);
+		mv.addObject("pagina", paginaWrapper);
 		return mv;
 	}
 	
