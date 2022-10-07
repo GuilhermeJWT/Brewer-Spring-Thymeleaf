@@ -22,6 +22,8 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.systemgs.util.ClienteGroupSequenceProvider;
 import br.com.systemgs.util.CnpjGroup;
 import br.com.systemgs.util.CpfGroup;
@@ -58,6 +60,7 @@ public class ModelCliente implements Serializable{
 	@Email(message = "Informe um E-Mail Válido!!!")
 	private String email;
 	
+	@JsonIgnore
 	@Embedded
 	private ModelEndereco endereco;
 	

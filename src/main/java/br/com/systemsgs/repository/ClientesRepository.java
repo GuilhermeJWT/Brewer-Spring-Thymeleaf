@@ -1,5 +1,6 @@
 package br.com.systemsgs.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,5 +13,7 @@ import br.com.systemsgs.repository.helper.cliente.ClientesQuerie;
 public interface ClientesRepository extends JpaRepository<ModelCliente, Long>, ClientesQuerie{
 
 	public Optional<ModelCliente> findByCpfOuCnpj(String cpfOuCnpj);
+
+	public List<ModelCliente> findByNomeStartingWithIgnoreCase(String nome);
 
 }
