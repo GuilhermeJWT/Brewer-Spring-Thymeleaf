@@ -1,5 +1,7 @@
 package br.com.systemsgs.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -11,11 +13,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.systemgs.util.CervejaFilter;
 import br.com.systemsgs.controller.page.PageWrapper;
+import br.com.systemsgs.dto.CervejaDTO;
 import br.com.systemsgs.enums.Origem;
 import br.com.systemsgs.enums.Sabor;
 import br.com.systemsgs.model.ModelCerveja;
@@ -69,6 +73,12 @@ public class CervejasController {
 		PageWrapper<ModelCerveja> paginaWrapper = new PageWrapper<>(cervejaRepository.filtrar(cervejaFilter, pageable), httpServletRequest);
 		mv.addObject("pagina", paginaWrapper);
 		return mv;
+	}
+	
+	/*Usado para testar na tela de Vendas, pesquisa alguns dados da cerveja com dto*/
+	@GetMapping(value = "/filtro")
+	public @ResponseBody List<CervejaDTO> pesquisar(String skuOuNome){
+		return cervejaRepository.porSkuOuNome(skuOuNome);
 	}
 
 }

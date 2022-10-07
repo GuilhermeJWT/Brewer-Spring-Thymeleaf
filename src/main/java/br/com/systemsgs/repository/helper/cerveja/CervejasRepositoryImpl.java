@@ -1,5 +1,7 @@
 package br.com.systemsgs.repository.helper.cerveja;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import br.com.systemgs.util.CervejaFilter;
+import br.com.systemsgs.dto.CervejaDTO;
 import br.com.systemsgs.model.ModelCerveja;
 import br.com.systemsgs.repository.PaginacaoUtil;
 
@@ -80,6 +83,13 @@ public class CervejasRepositoryImpl implements CervejasQuerie {
 
 	private boolean isEstiloPresente(CervejaFilter filtro) {
 		return filtro.getEstilo() != null && filtro.getEstilo().getCodigo() != null;
+	}
+
+	@Override
+	public List<CervejaDTO> porSkuOuNome(String skuOuNome) {
+		String jpql = "select new br.com.systemsgs.dto.CervejaDTO(codigo, sku, nome, origem, valor, foto) from ModelCerveja where lower(sku) like lower(:skuOuNome) or lower(nome) like lower(:skuOuNome)";
+		List<CervejaDTO> cervejasFiltradas = manager.createQuery(jpql, CervejaDTO.class).setParameter("skuOuNome", skuOuNome.toLowerCase() + "%").getResultList();
+		return cervejasFiltradas;
 	}
 
 }
