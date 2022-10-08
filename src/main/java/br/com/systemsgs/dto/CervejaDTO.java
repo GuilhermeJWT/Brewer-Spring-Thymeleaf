@@ -2,6 +2,8 @@ package br.com.systemsgs.dto;
 
 import java.math.BigDecimal;
 
+import org.springframework.util.StringUtils;
+
 import br.com.systemsgs.enums.Origem;
 
 public class CervejaDTO {
@@ -63,7 +65,7 @@ public class CervejaDTO {
 	}
 
 	public String getFoto() {
-		return foto;
+		return !StringUtils.isEmpty(foto) ? foto : "cerveja-mock.png";
 	}
 
 	public void setFoto(String foto) {
