@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import br.com.systemsgs.model.ModelCerveja;
 import br.com.systemsgs.model.ModelItemVenda;
 
+/*SessionScope ou versão antiga a 4.2: @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS*/
+@SessionScope
 @Service
 public class TabelaItensVenda {
 	
