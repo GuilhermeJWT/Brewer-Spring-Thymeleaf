@@ -42,6 +42,8 @@
 		<spring-security.version>4.1.1.RELEASE</spring-security.version>
 		<thymeleaf-extras-springsecurity.version>3.0.0.RELEASE</thymeleaf-extras-springsecurity.version>
 		
+		<junit.version>4.12</junit.version>
+		
 		<!--  
 		<log4f.version>2.6</log4f.version>
 		<jcl-over-slf4j>1.7.21</jcl-over-slf4j>
@@ -203,6 +205,13 @@
 		  <artifactId>spring-security-config</artifactId>
 		  <version>${spring-security.version}</version>
 		  <scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 		
 		<!--  
