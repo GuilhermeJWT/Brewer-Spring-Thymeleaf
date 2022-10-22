@@ -8,14 +8,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.systemsgs.model.ModelCerveja;
+import br.com.systemsgs.service.TabelaItensVenda;
 
 public class TabelaItensVendaTest {
 	
-	private TebelaItensVenda tabelaItensVenda;
+	private TabelaItensVenda tabelaItensVenda;
 	
 	@Before
 	public void setUp() {
-		this.tabelaItensVenda = new TebelaItensVenda();
+		this.tabelaItensVenda = new TabelaItensVenda();
 	}
 	
 	@Test

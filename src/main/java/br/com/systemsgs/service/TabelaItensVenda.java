@@ -1,13 +1,16 @@
-package br.com.systemsgs.venda;
+package br.com.systemsgs.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import br.com.systemsgs.model.ModelCerveja;
 import br.com.systemsgs.model.ModelItemVenda;
 
-public class TebelaItensVenda {
+@Service
+public class TabelaItensVenda {
 	
 	private List<ModelItemVenda> itens = new ArrayList<>();
 	
@@ -25,6 +28,10 @@ public class TebelaItensVenda {
 		modelItemVenda.setValorUnitario(modelCerveja.getValor());
 		
 		itens.add(modelItemVenda);
+	}
+	
+	public int total() {
+		return itens.size();
 	}
 
 }
