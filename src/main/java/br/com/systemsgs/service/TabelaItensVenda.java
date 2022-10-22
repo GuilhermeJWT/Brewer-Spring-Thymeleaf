@@ -3,6 +3,7 @@ package br.com.systemsgs.service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -25,19 +26,30 @@ public class TabelaItensVenda {
 	}
 	
 	public void adicionarItem(ModelCerveja modelCerveja, Integer quantidade) {
-		ModelItemVenda modelItemVenda = new ModelItemVenda();
-		modelItemVenda.setCerveja(modelCerveja);
-		modelItemVenda.setQuantidade(quantidade);
-		modelItemVenda.setValorUnitario(modelCerveja.getValor());
 		
-		itens.add(modelItemVenda);
+		Optional<ModelItemVenda> itemVendaOptional = itens.stream()
+			.filter(i -> i.getCerveja().equals(modelCerveja))
+			.findAny();
+		
+		ModelItemVenda itemVenda =  null;
+		if(itemVendaOptional.isPresent()){
+			itemVenda = itemVendaOptional.get();
+			itemVenda.setQuantidade(itemVenda.getQuantidade() + quantidade);
+		}else {
+			ModelItemVenda modelItemVenda = new ModelItemVenda();
+			modelItemVenda.setCerveja(modelCerveja);
+			modelItemVenda.setQuantidade(quantidade);
+			modelItemVenda.setValorUnitario(modelCerveja.getValor());
+			
+			itens.add(0, modelItemVenda);
+		}
 	}
 	
 	public int total() {
 		return itens.size();
 	}
 
-	public Object getItens() {
+	public List<ModelItemVenda> getItens() {
 		return itens;
 	}
 
