@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.systemsgs.model.ModelCerveja;
 import br.com.systemsgs.repository.CervejasRepository;
@@ -27,11 +28,14 @@ public class VendasController {
 	}
 	
 	@PostMapping("/item")
-	public @ResponseBody String adicionarItem(Long codigoCerveja) {
+	public ModelAndView adicionarItem(Long codigoCerveja) {
 		ModelCerveja modelCerveja = cervejasRepository.findOne(codigoCerveja);
 		tabelaItensVenda.adicionarItem(modelCerveja, 1);
 		
-		return "Item Adicionado!";
+		ModelAndView mv = new ModelAndView("/venda/TabelaItensVenda");
+		mv.addObject("itens", tabelaItensVenda.getItens());
+		
+		return mv;
 	}
 
 }
