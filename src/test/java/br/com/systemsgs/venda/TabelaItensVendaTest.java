@@ -65,5 +65,18 @@ public class TabelaItensVendaTest {
 		assertEquals(1, tabelaItensVenda.total());
 		assertEquals(new BigDecimal("9.00"), tabelaItensVenda.getValorTotal());
 	}
+	
+	@Test
+	public void deveAlterarQuantidadeDoItem() throws Exception{
+		ModelCerveja cerveja1 = new ModelCerveja();
+		cerveja1.setCodigo(1L);
+		cerveja1.setValor(new BigDecimal("4.50"));
+		
+		tabelaItensVenda.adicionarItem(cerveja1, 1);
+		tabelaItensVenda.alterarQuantidadeItens(cerveja1, 3);
+		
+		assertEquals(1, tabelaItensVenda.total());
+		assertEquals(new BigDecimal("13.50"), tabelaItensVenda.getValorTotal());
+	}
 
 }
